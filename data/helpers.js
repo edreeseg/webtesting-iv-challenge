@@ -7,7 +7,9 @@ module.exports = {
 };
 
 async function insert(user) {
-  return db('users').insert(user);
+  const { username, email, department } = user;
+  if (!username || !email || !department) return null;
+  return db('users').insert({ username, email, department });
 }
 
 async function getAll() {
